@@ -23,7 +23,7 @@ export type BlockType = {|
 
 export const BLOCK_TIME = 300000
 
-export const REWARD_HALVING_SCHEDULE = 5
+export const REWARD_HALVING_SCHEDULE = 40
 
 export const BLOCK_SIZE_LIMIT = 100
 
