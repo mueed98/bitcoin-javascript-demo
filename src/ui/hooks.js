@@ -23,6 +23,7 @@ export function useNodes() {
   const [blocks, setBlocks] = useState([])
   const [balances, setBalances] = useState({})
   const [mempool, setMempool] = useState([])
+  const [blockOfBlocks, setBlockofBlocks] = useState([])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
@@ -51,6 +52,7 @@ export function useNodes() {
       const rawBalances = await blockChain.getBalances()
 
       let blocks = []
+
       for (const node of longestChain) {
         const {
           miner,
@@ -88,10 +90,14 @@ export function useNodes() {
           hash,
         })
       }
+
+      setBlockofBlocks(blocks)
+
       if (blocks.length > 5) {
         blocks[0].length = blocks.length
         setBlocks([blocks[0], blocks[1], blocks[2], blocks[3], blocks[4]])
       } else {
+        blocks[0].length = blocks.length
         setBlocks(blocks)
       }
 
@@ -153,5 +159,5 @@ export function useNodes() {
     }, 1000)
   }, [])
 
-  return { nodes, blocks, balances, mempool }
+  return { nodes, blocks, balances, mempool, blockOfBlocks }
 }

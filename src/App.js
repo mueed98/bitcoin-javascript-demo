@@ -8,16 +8,21 @@ import BlockContainer from './BlockContainer'
 import MempoolContainer from './MempoolContainer'
 
 const App = () => {
-  const { nodes, blocks, balances, mempool } = useNodes()
+  const { nodes, blocks, balances, mempool, blockOfBlocks } = useNodes()
 
   return (
     <div className="js-bitcoin-container">
-      <h2>Bitcoin Copy Cat Network</h2>
+      <h1>Bitcoin Copy Cat Network</h1>
       <StatsContainer blocks={blocks} />
+      {/* <h3>Latest 5 blocks</h3> */}
       <div className="main-content">
         <BlockContainer blocks={blocks} />
         <MempoolContainer mempool={mempool} />
-        <NodeContainer nodes={nodes} balances={balances} blocks={blocks} />
+        <NodeContainer
+          nodes={nodes}
+          balances={balances}
+          blocks={blockOfBlocks}
+        />
       </div>
     </div>
   )
