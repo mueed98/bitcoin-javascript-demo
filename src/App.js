@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="js-bitcoin-container">
       <h1>Bitcoin Copy Cat Network</h1>
-      <StatsContainer blocks={blocks} />
+      <StatsContainer blocks={blockOfBlocks} />
       {/* <h3>Latest 5 blocks</h3> */}
       <div className="main-content">
         <BlockContainer blocks={blocks} />

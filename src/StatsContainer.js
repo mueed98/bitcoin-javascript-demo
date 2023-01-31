@@ -32,7 +32,7 @@ class StatsContainer extends React.Component {
     this.setState({
       currReward: blocks[0].reward,
       currDiff: blocks[0].difficulty,
-      totalBlocks: blocks[0].length,
+      totalBlocks: blocks.length,
       avgTime: Math.round(
         totalBlockDiffs.slice(0, 10).reduce((x, y) => x + y, 0) /
           totalBlockDiffs.slice(0, 10).length,
