@@ -21,11 +21,11 @@ export type BlockType = {|
   reward: number,
 |}
 
-export const BLOCK_TIME = 60000
+export const BLOCK_TIME = 300000
 
-export const REWARD_HALVING_SCHEDULE = 100
+export const REWARD_HALVING_SCHEDULE = 40
 
-export const BLOCK_SIZE_LIMIT = 10
+export const BLOCK_SIZE_LIMIT = 100
 
 export const GENESIS_BLOCK: BlockType = {
   parentid: null,
@@ -35,8 +35,8 @@ export const GENESIS_BLOCK: BlockType = {
   time: now(),
   elapsed: 0,
   transactions: [],
-  difficulty: 1,
-  reward: 1024,
+  difficulty: 40,
+  reward: 100,
 }
 
 export const PRICE_FORMULA = (days: number): number =>
