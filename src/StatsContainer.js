@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 
 class StatsContainer extends React.Component {
@@ -9,32 +9,42 @@ class StatsContainer extends React.Component {
     avgTime: 0,
     rewardsArr: [],
     diffArr: [],
-  };
+  }
 
   componentDidUpdate = (prevProps) => {
-    const { blocks } = this.props;
-    if (!blocks.length || (JSON.stringify(prevProps.blocks) === JSON.stringify(blocks))) {
-      return;
+    const { blocks } = this.props
+    if (
+      !blocks.length ||
+      JSON.stringify(prevProps.blocks) === JSON.stringify(blocks)
+    ) {
+      return
     }
 
-    const totalBlockDiffs = [];
+    const totalBlockDiffs = []
     for (let i = 0; i < blocks.length; i++) {
       if (i !== 0) {
-        const currTime = blocks[i].time;
-        const prevTime = blocks[i - 1].time;
-        totalBlockDiffs.push(Math.abs(currTime - prevTime));
+        const currTime = blocks[i].time
+        const prevTime = blocks[i - 1].time
+        totalBlockDiffs.push(Math.abs(currTime - prevTime))
       }
     }
- 
+
     this.setState({
       currReward: blocks[0].reward,
       currDiff: blocks[0].difficulty,
       totalBlocks: blocks.length,
-      avgTime: Math.round((totalBlockDiffs.slice(0, 10).reduce((x, y) => x + y, 0)) / totalBlockDiffs.slice(0, 10).length),
-      rewardsArr: ([...blocks].reverse().map((block, index) => ({y: block.reward, x: index + 1 }))),
-      diffArr: ([...blocks].reverse().map((block, index) => ({y: block.difficulty, x: index + 1 }))),
-    });
-  };
+      avgTime: Math.round(
+        totalBlockDiffs.slice(0, 10).reduce((x, y) => x + y, 0) /
+          totalBlockDiffs.slice(0, 10).length,
+      ),
+      rewardsArr: [...blocks]
+        .reverse()
+        .map((block, index) => ({ y: block.reward, x: index + 1 })),
+      diffArr: [...blocks]
+        .reverse()
+        .map((block, index) => ({ y: block.difficulty, x: index + 1 })),
+    })
+  }
 
   render = () => {
     const {
@@ -44,7 +54,7 @@ class StatsContainer extends React.Component {
       avgTime,
       rewardsArr,
       diffArr,
-    } = this.state;
+    } = this.state
 
     return (
       <div className="container stats-container">
@@ -62,7 +72,7 @@ class StatsContainer extends React.Component {
               <p>Current reward:</p>
             </div>
             <div className="value">
-              <p>{currReward} coins</p>
+              <p>{currReward} BTCCC</p>
             </div>
           </div>
           <div className="stat">
@@ -83,7 +93,10 @@ class StatsContainer extends React.Component {
           </div>
         </div>
         <div className="graphs-container">
-          <div className="rewards-graph" style={{ height: '300px', width: '50%' }}>
+          <div
+            className="rewards-graph"
+            style={{ height: '300px', width: '50%' }}
+          >
             <h4>Reward over time</h4>
             <ResponsiveLine
               data={[
@@ -110,7 +123,7 @@ class StatsContainer extends React.Component {
               enableArea
               enableGridX={false}
               enableGridY={false}
-              colors={[ '#17FFEE' ]}
+              colors={['#17FFEE']}
               lineWidth={3}
               enablePoints={false}
               enableCrosshair={false}
@@ -121,7 +134,7 @@ class StatsContainer extends React.Component {
                 axis: {
                   ticks: {
                     text: {
-                      fill: "#ffffff",
+                      fill: '#ffffff',
                       fontSize: '13px',
                       fontFamily: 'Monaco, Arial, sans-serif',
                       opacity: '0.67',
@@ -131,7 +144,10 @@ class StatsContainer extends React.Component {
               }}
             />
           </div>
-          <div className="difficulty-graph" style={{ height: '300px', width: '50%' }}>
+          <div
+            className="difficulty-graph"
+            style={{ height: '300px', width: '50%' }}
+          >
             <h4>Difficulty over time</h4>
             <ResponsiveLine
               data={[
@@ -157,7 +173,7 @@ class StatsContainer extends React.Component {
                 axis: {
                   ticks: {
                     text: {
-                      fill: "#ffffff",
+                      fill: '#ffffff',
                       fontSize: '13px',
                       fontFamily: 'Monaco, Arial, sans-serif',
                       opacity: '0.67',
@@ -169,7 +185,7 @@ class StatsContainer extends React.Component {
               enableArea
               enableGridX={false}
               enableGridY={false}
-              colors={[ '#17FFEE' ]}
+              colors={['#17FFEE']}
               lineWidth={3}
               enablePoints={false}
               enableCrosshair={false}
@@ -180,8 +196,8 @@ class StatsContainer extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default StatsContainer;
+export default StatsContainer

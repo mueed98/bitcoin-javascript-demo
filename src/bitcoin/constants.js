@@ -21,9 +21,9 @@ export type BlockType = {|
   reward: number,
 |}
 
-export const BLOCK_TIME = 100000
+export const BLOCK_TIME = 180000
 
-export const REWARD_HALVING_SCHEDULE = 20
+export const REWARD_HALVING_SCHEDULE = 30
 
 export const BLOCK_SIZE_LIMIT = 10
 
